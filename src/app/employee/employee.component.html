@@ -1,0 +1,73 @@
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 0px solid #ca1111;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #95d3a2;
+}
+.buttonStyle{
+    height:40px;
+    width:40px;
+    border-radius: 5px;
+    border-width: 3px ;
+
+    margin-left:10px;
+    background-color: rgb(3, 250, 3);
+}
+.buttonStyle2{
+    height:40px;
+    width:40px;
+    border-radius: 5px;
+    border-width: 3px ;
+    margin-left:10px;
+
+    background-color: rgb(212, 31, 31);
+}
+</style>
+</head>
+<body>
+
+<h2>List of Employees</h2>
+
+<table>
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>WorkDays</th>
+        <th>Employee Type</th>
+        <th>Balance Leaves</th>
+        <th>Working Days</th>
+        <th>Leaves</th>
+
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+        <td>{{employee.empName}}</td>
+        <td>{{employee.totalWorkDays}}</td>
+        <td *ngIf="employee.empType == 0">Hourly</td>
+        <td *ngIf="employee.empType == 1">Salaried</td>
+        <td *ngIf="employee.empType == 2">Manager</td>
+         <td>{{employee.leaveBalance}}</td>
+         <td><button class="buttonStyle" (click)="updateWorkDays(employee.empId,1)">+</button>
+          <button class="buttonStyle2" (click)="updateWorkDays(employee.empId,-1)">-</button>
+         <td>
+          <button class="buttonStyle" (click)="updateLeaves(employee.empId,1)">+</button>
+          <button class="buttonStyle2" (click)="updateLeaves(employee.empId,-1)">-</button>
+         </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
